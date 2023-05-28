@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div style="position: relative; height:80vh; width:80vw">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+</head>
+<body>
+
+
+<script>
+     var chart ;
+     var jsondata;
+     var data;
+       
+    $(document).ready(function() {
+        // ajaxTask();
+        // ajaxChart();
+
+
+        setInterval(function () {
+        if ( chart !== undefined && chart.canvas !== null ) {
+
+                // var array1= [47.97, 14.97, 11.99, 11.97, 48.94, 78.93, 55.93, 55.86, 64.95, 88.92, 2555.93];
+                // var array2= [52.97, 20.97, 23.99, 9.97, 2555.94, 78.93, 151.93, 78.86, 64.95, 55.92, 102.93];
+
+                // chart.data.datasets[0].data=array1;
+                // chart.data.datasets[1].data=array2;
+                // chart.update();
+
+                chart.destroy();  
+
+            }else{
+            ajaxTask();
+            }
+      }, 3000);
+    });
+
+
+function ajaxTask() {
+
+    var data1='{"__type":"BusinessLayer.MainDBModel.UserAccount","id":8212,"FirstName":"GSC ","LastName":"Holdings Limited","StoreName":"GSC {Albert austin}","useremail":"gscholdingsltd@gmail.com","StoreAddress":"","StoreCity":"","StoreCountry":"United Kingdom","StoreCountryCode":null,"userPhone":"","userPassword":"BuhTMynmhlOZUSLRBfPiRe5WF3H9iImZ","eBayuserName":"","eBayAuthToken":"","eBayAccessToken":"","eBayRefreshToken":null,"eBaySessionID":"","AmazonSellerId":"AOIUII50LZY2F","AmazonSPRefreshToken":"","AmazonSPRefreshTokenUS":"","AmazonSPRefreshTokenFE":"","AmazonAdsRefreshToken":"","WooConsumerKey":"","WooSecret":"","WooStoreAddress":"","ShopifyStore":"","ShopifyKey":"","OnBuyConsumerKey":null,"OnBuySecretKey":null,"EtsyRefreshToken":null,"CurrentStep":null,"FirstLogin":false,"logoPath":"638101628288344380_comp_1007187-200.png","stripeID":"cus_NBIHULtKoXtFHe","LastUpdateTimeAmazon":null,"LastUpdateTimeAmazonUS":null,"LastUpdateTimeAmazonFE":null,"LastUpdateTimeEbay":null,"LastUpdateTimeShopify":null,"LastUpdateTimeAmazonAds":"/Date(1679464177217)/","LastUpdateTimeEbayAds":null,"LastUpdateTimeOnBuy":null,"LastUpdateTimeEtsy":null,"LastUpdateTimeWoo":null,"DefaultCurrency":null,"FCMID":"","CreatedOn":"/Date(1673861835333)/","IsSuspended":null,"DeviceType":null,"thirdPartyId":"","stripeActiveSubscriptionID":null,"IsEmailConfirmed":null,"Timezone":"Greenwich Standard Time","sellerType":"undefined","appLastAccessOn":"/Date(1683174345873)/","signupSource":null,"StripePackageName":"Enterprise"}';
+
+            $.ajax({
+                id:1,
+                type: "POST",
+                traditional: true,
+                async: true,
+                url: "https://hazelnutapi.whatsales.io/API/Index.aspx/GetSalesProfitChartNew",
+                data: "{user : '"+data1+"',_platformString:'all' , isLiveView: true , countries: 'all' , _periodString: 'custom|05/05/2023|05/05/2023'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+                success: function (data) {
+                jsondata=data;
+                ajaxChart(jsondata);
+                
+                },
+                error: function (request, status, error) {
+                console.log("There was an error: ", request.responseText);
+                            }
+                    });
+            }
+
+
+        function ajaxChart(jsondata){               
+            const ctx = document.getElementById('myChart').getContext("2d");
+
+
+            chart = new Chart(ctx, {
+
+                data: {
+                labels: jsondata.d.SalesvsProfitGraph.labels,
+                datasets: [{
+                    type: 'bar',
+                    label: 'DATA1',
+                    data: jsondata.d.SalesvsProfitGraph.data1,
+                    fill: false,
+                    },
+                    {
+                    type: 'bar',
+                    label: 'DATA2',
+                    data: jsondata.d.SalesvsProfitGraph.data2,
+                    fill: false,
+                    },
+                    {
+                    type: 'bar',
+                    label: 'DATA3',
+                    data: jsondata.d.SalesvsProfitGraph.data3,
+                    fill: false,
+                    },
+                    {
+                    type: 'line',
+                    label: 'DATA4',
+                    data: jsondata.d.SalesvsProfitGraph.data4,
+                    fill: false,
+                    },
+                    {
+                    type: 'line',
+                    label: 'DATA5',
+                    data: jsondata.d.SalesvsProfitGraph.data5,
+                    fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                    mode: 'index',
+                    intersect: false,
+                    },
+                    stacked: false,
+        
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                        label(tooltipItems, label) {
+                            return `${chart.data.datasets[tooltipItems.datasetIndex].label} : € ${tooltipItems.formattedValue} `
+                        }
+            }
+        },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                        labels: {
+                        usePointStyle: true,
+                        color: 'rgb(255, 99, 132)'
+                                }
+                    },
+
+    },
+            scales: {
+              y: {
+                display:true,
+                position: 'left',
+                  
+                scaleLabel: {
+                    display: false,
+                            },
+                grid:       {
+                    display: true,
+                            },
+                ticks: {
+                    callback: function(value, index, ticks) {
+                            return '$' + value;                   
+                            }
+                    }
+                }    
+             }
+          }
+                });
+            }
+
+</script>
+</body>
+</html>

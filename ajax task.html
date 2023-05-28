@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+</head>
+<body>
+
+<h1>My First Heading</h1>
+
+<script>
+    
+   var data1='{"__type":"BusinessLayer.MainDBModel.UserAccount","id":8212,"FirstName":"GSC ","LastName":"Holdings Limited","StoreName":"GSC {Albert austin}","useremail":"gscholdingsltd@gmail.com","StoreAddress":"","StoreCity":"","StoreCountry":"United Kingdom","StoreCountryCode":null,"userPhone":"","userPassword":"BuhTMynmhlOZUSLRBfPiRe5WF3H9iImZ","eBayuserName":"","eBayAuthToken":"","eBayAccessToken":"","eBayRefreshToken":null,"eBaySessionID":"","AmazonSellerId":"AOIUII50LZY2F","AmazonSPRefreshToken":"","AmazonSPRefreshTokenUS":"","AmazonSPRefreshTokenFE":"","AmazonAdsRefreshToken":"","WooConsumerKey":"","WooSecret":"","WooStoreAddress":"","ShopifyStore":"","ShopifyKey":"","OnBuyConsumerKey":null,"OnBuySecretKey":null,"EtsyRefreshToken":null,"CurrentStep":null,"FirstLogin":false,"logoPath":"638101628288344380_comp_1007187-200.png","stripeID":"cus_NBIHULtKoXtFHe","LastUpdateTimeAmazon":null,"LastUpdateTimeAmazonUS":null,"LastUpdateTimeAmazonFE":null,"LastUpdateTimeEbay":null,"LastUpdateTimeShopify":null,"LastUpdateTimeAmazonAds":"/Date(1679464177217)/","LastUpdateTimeEbayAds":null,"LastUpdateTimeOnBuy":null,"LastUpdateTimeEtsy":null,"LastUpdateTimeWoo":null,"DefaultCurrency":null,"FCMID":"","CreatedOn":"/Date(1673861835333)/","IsSuspended":null,"DeviceType":null,"thirdPartyId":"","stripeActiveSubscriptionID":null,"IsEmailConfirmed":null,"Timezone":"Greenwich Standard Time","sellerType":"undefined","appLastAccessOn":"/Date(1683174345873)/","signupSource":null,"StripePackageName":"Enterprise"}';
+    
+    $(document).ready(function() {
+
+        setInterval(ajaxTask,10000);
+
+        function ajaxTask() {
+            $.ajax({
+                id:1,
+                type: "POST",
+                traditional: true,
+                async: true,
+                url: "https://hazelnutapi.whatsales.io/API/Index.aspx/GetStaticData",
+                data: "{user : '"+data1+"',_platformString:'all'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                processStaticResults(data);
+                console.log(data);
+                },
+                error: function (request, status, error) {
+                console.log("There was an error: ", request.responseText);
+                                        }
+                    });
+            }   
+});
+</script>
+</body>
+</html>

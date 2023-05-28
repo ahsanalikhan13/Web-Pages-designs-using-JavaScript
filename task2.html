@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <script>
+          const ctx = document.getElementById('myChart').getContext("2d");
+          new Chart(ctx, {
+            
+            data: {
+            labels: ['1999-11-06','2000-11-06','2001-11-06','2002-11-06','2003-11-06','2004-11-06','2005-11-06','2006-11-06','2007-11-06','2008-11-06','2009-11-06'],
+            datasets: [{
+              type: 'line',
+              label: 'lineGraph',
+              data: [2, 3, 3, 9, 10,22,4,30,4,22,28],
+              fill: false,
+              borderWidth: 1,
+              tension: 0.1,
+            },
+            {
+              type: 'bar',
+              label: 'Graph',
+              data: [2, 3, 3, 9, 14, 23,11,30,11,22,4],
+              fill: false,
+              borderWidth: 1,
+              tension: 0.1,
+            }
+        ],     
+        },
+  
+        options: {
+            responsive: true,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    boxWidth: 9,    
+                    color: 'rgb(255, 99, 132)'
+                }
+            },
+
+              title: {
+                display: true,
+            text: 'Task 2'
+      }
+    },
+            scales: {
+                x: {
+                ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 5,
+            }
+},
+              y: {
+                position: 'left',
+                max: 30,
+                min: 0,
+            ticks: {
+                stepSize: 6,
+
+                callback: function(value, index, ticks) {
+                        return '€' + value;                   
+            },
+
+        grid: {
+          drawOnChartArea: false,
+          display: false,
+        },
+      
+            }
+        }
+    }
+  }
+}
+    )
+
+    </script>
+
+</body>
+</html>

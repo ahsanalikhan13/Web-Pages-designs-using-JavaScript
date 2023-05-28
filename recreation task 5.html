@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Page Title</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>    
+  <div style="position: relative; height:40vh; width:80vh">
+    <canvas id="myChart"></canvas>
+  </div>
+
+
+  <script>
+
+    var chart;
+    $(document).ready(function () {
+    const element = document.getElementById("myChart");
+
+    setInterval(function () {
+        if ( chart !== undefined && chart.canvas !== null ) {
+            chart.destroy();
+            }else{
+            create_chart();
+            }
+
+      }, 3000);
+    });  
+
+
+    function create_chart(){
+
+            const ctx = document.getElementById('myChart').getContext("2d");
+            chart = new Chart(ctx, {
+
+            data: {
+                labels: ["Jan 23", "Feb 23", "Mar 23", "Apr 23", "May 23"],
+
+                datasets: [{
+                type: 'bar',
+                label: 'Sales',
+                data: [101550.48, 141376.78, 152397.33, 173977.18, 19688.03],
+                fill: false,
+                tension: 0.1,
+                },
+                {
+                type: 'bar',
+                label: 'Expenses',
+                data: [56830.03, 78222.29, 91738.62, 109036.09, 13172.4],
+                fill: false,
+                tension: 0.1,
+                },
+                {
+                type: 'bar',
+                label: 'Profit',
+                data: [67713.66, 102924.51, 106356.98, 122111.53, 13506.76],
+                fill: false,
+                tension: 0.1,
+                },
+                {
+                type: 'line',
+                label: 'Orders',
+                data: [8354, 10053, 10994, 12023, 1501],
+                fill: false,
+                tension: 0.1,
+                },
+                {
+                type: 'line',
+                label: 'Units',
+                data: [12637, 12766, 13677, 14234, 1703],
+                fill: false,
+                tension: 0.1,
+                }
+                ],
+            },
+
+            options: {
+                responsive: true,
+                interaction: {
+                mode: 'index',
+                intersect: false,
+                },
+                stacked: false,
+
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                    label(tooltipItems, label) {
+                    return `${chart.data.datasets[tooltipItems.datasetIndex].label} : € ${tooltipItems.formattedValue} `
+                    }
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                    usePointStyle: true,
+                    color: 'rgb(255, 99, 132)'
+                    }
+                },
+
+                },
+                scales: {
+                x: {
+                    ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 3,
+                    },
+                },
+                y: {
+                    display: false,
+                    position: 'left',
+                    max: 180000,
+                    min: 0,
+
+                    scaleLabel: {
+                    display: false,
+                    },
+                    grid: {
+                    display: false,
+                    },
+                    ticks: {
+                    stepSize: 45000,
+                    callback: function (value, index, ticks) {
+                        return '$' + value;
+                    }
+                }
+            }
+        }
+    }
+}
+)}
+
+</script>
+
+</body>
+</html>

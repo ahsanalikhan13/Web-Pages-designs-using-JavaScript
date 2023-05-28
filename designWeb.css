@@ -1,0 +1,251 @@
+.page1{
+    background-image: url(https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg?w=2000);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: sans-serif;
+    margin: 5px 40px 0px 40px;
+}
+
+.img_header{
+    margin-left: 4vw;
+    background-color: #fff;
+    padding: 2px 1vw;
+    width: 20vw;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.header_headings{
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 2vw;
+    gap: 3vw;
+    padding: 0px;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+.header_headings :hover{
+    text-decoration: underline;
+}
+
+.header_btn{
+    background-color: black;
+    color: white;
+    font-weight: 500 !important;
+    font-size: 2vw;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: block;
+    padding: 1vw;
+    width: auto;
+    cursor: pointer;
+    z-index: 2;
+    margin: 0px 2vw;
+    transition: all 400ms;
+}
+
+.page_body{
+    width: 65%;
+    margin: auto;
+}
+
+.body_para{
+    color: white;
+    font-weight: 800;
+    font-size: 3.95vw;
+    padding-top: 70px;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.body_para2{
+    color: #e9ecf8;
+    font-weight: 400;
+    font-size: 1.053vw;
+    line-height: 24px;
+}
+
+.body_btns{
+    margin-left: -12px;
+}
+
+.body_btn{
+    background-color: black;
+    color: white;
+    border-radius: 16px;
+    cursor: pointer;
+    padding: 16px 0px;
+    width: 140px;
+    margin: 10px;
+}
+
+.page2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #edeeef;
+    flex-direction: column;
+    padding-bottom: 4rem;
+}
+
+.logo_container{
+    display: flex;
+    background-color: #0d6efd;
+    letter-spacing: 1px;
+}
+
+.page2_header{
+    padding-top: 130px;
+    letter-spacing: 1px;
+    padding: 2rem;
+}
+
+.page2 h3{
+    margin: auto;
+    padding: 0.7rem;
+    text-align: center;
+}
+
+.page2 p{
+    margin: auto;
+    padding: 0.7rem;
+    text-align: center;
+    width: 100%;
+}
+
+.logo1_container{
+    margin-right: 10px;
+}
+
+.logo2_container{
+    margin-right: 60px;
+}
+
+.logo1_container h2{
+    margin-left: 63px;
+}
+
+.logo3_container h2{
+    margin-left: 56px;
+}
+
+.page2_header p{
+    padding: 1px;
+}
+
+.imgLogo{
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 380px) {
+    .header_headings{
+        color: white;  
+        padding: 0px;
+        font-family: sans-serif;
+        cursor: pointer;
+    }
+
+    .logo_container{
+        display: grid;
+    }
+
+    .logo1_container h2{
+        margin: auto;
+        width: 33% !important;
+    }
+
+    .logo2_container h2{
+        width: 37% !important;
+        margin: auto;
+        margin-top: none;
+    }
+
+    .logo3_container h2{
+        margin: auto;
+        width: 38% !important;
+    }
+
+    .page2_header{
+        padding-top: 36px !important;
+    }
+
+    .body_para{
+        padding-top: 62px !important;
+    }
+
+    .body_para2 p{
+        font-size: 12px !important;
+    }
+
+    .logo2_container {
+        margin-right: 0px;
+    }
+
+    .page2{
+        padding-bottom: 0rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .body_para{
+        padding-top: 65px;
+    }
+
+    .body_para2{
+        font-size: 2vw;
+    }
+
+    .page2_header{
+        padding-top: 60px;
+    }
+
+    .page2{
+        padding-bottom: 0rem;
+    }
+
+    .logo_container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0vw 8vw 0vw 8vw;
+    }
+
+    .logo1_container{
+        margin-right: 0px;
+        border: 6px solid #D32D25;
+    }
+
+    .logo1_container h2{
+        padding-left: 5vw !important;
+        margin-left: 0px;
+    }
+
+    .logo2_container{
+        border: 6px solid #e7adad;
+        margin: auto;
+        width: 74%;
+    }
+
+    .logo2_container h2{
+        padding-left: 10vw;
+    }
+
+    .logo3_container{
+        border: 6px solid #896d6d;
+        margin: auto;
+        width: 74%;
+    }
+
+    .logo3_container h2{
+        padding-left: 5vw;
+    }
+}

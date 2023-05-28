@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<div style="position: relative; height:80vh; width:80vw">
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+      
+      <script>
+        var ctx = document.getElementById('myChart');
+        var myArray1=[[12, 19, 3, 5, 2, 3], [34, 6, 13, 24, 9, 20], [2, 9, 23, 15, 12, 13] ]
+        var myArray2=[[1, 39, 23, 75, 42, 73], [4, 26, 13, 64, 49, 99], [32, 29, 27, 65, 52, 67] ]
+
+        function addData() {
+        // Chart_new.data.labels.push(label);
+       
+        Chart_new.data.datasets[0].data = myArray1[0];
+        Chart_new.data.datasets[1].data = myArray1[1];
+        Chart_new.data.datasets[2].data = myArray1[2];
+        
+        Chart_new.update(); 
+}
+
+        var Chart_new = new Chart(ctx, {
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            
+            datasets: [{
+              type: 'line',
+              label: 'firstLine',
+              data: myArray2[0],
+              fill: false,
+              borderWidth: 1,
+              tension: 0.1,
+            },
+            {
+              type: 'line',
+              label: 'secondLine',
+              data: myArray2[1],
+              borderWidth: 1,
+              tension: 0.1,
+              fill: false,
+            },
+            {
+              type:'bar',
+              label: 'thirdLine',
+              data: myArray2[2],
+              borderWidth: 1,
+              tension: 0.1,
+              fill: false,
+            },
+               
+        ]
+          },
+
+          options: {
+            responsive: true,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            stacked: false,
+            plugins: {
+              title: {
+                display: true,
+            text: 'Chart.js Line Chart - Multi Axis'
+      }
+    },
+            scales: {
+              y: {
+                position: 'left',
+                max: 100,
+                min: 0,
+            ticks: {
+                stepSize: 20,
+
+                callback: function(value, index, ticks) {
+                        return '$' + value;                   
+            },
+
+        grid: {
+          drawOnChartArea: false,
+          display: false,
+        },
+      
+            }
+        }
+    }
+  }
+})
+      </script>  
+
+</body>
+</html>
